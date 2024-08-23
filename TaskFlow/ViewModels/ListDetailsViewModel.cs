@@ -1,13 +1,11 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using TaskFlow.Models;
 
 namespace TaskFlow.ViewModels
 {
     public partial class ListDetailsViewModel : BaseViewModel
     {
-        public ListDetailsViewModel()
-        {
-
-        }
 
         [RelayCommand]
         private void GoBack()

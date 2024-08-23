@@ -27,5 +27,12 @@
                 Margin="0,0,10,0" Cursor="Hand"
                 Command="{Binding GoBackCommand}"/>
 
+        <TextBlock Text="{Binding TodoList.Title, RelativeSource={RelativeSource AncestorType=Page}, StringFormat='{}{0} to do list.'}"
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"
+                   Margin="10,0,0,0" 
+                   FontFamily="Bahnschrift"/>
+
+
     </Grid>
 </Page>
