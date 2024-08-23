@@ -1,0 +1,149 @@
+<Page x:Class="TaskFlow.Views.WelcomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:vm="clr-namespace:TaskFlow.ViewModels"
+      mc:Ignorable="d"
+      Title="WelcomePage" Height="550">
+
+    <Page.DataContext>
+        <vm:WelcomeViewModel/>
+    </Page.DataContext>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height=".4*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding Title}"
+                   VerticalAlignment="Center"
+                   Margin="10,0,0,0"
+                   FontSize="16" FontFamily="Bahnschrift"/>
+
+        <Canvas Background="White" Grid.Row="1">
+
+            <Border Background="White" Padding="8" BorderThickness="0"
+					BorderBrush="Transparent"
+					CornerRadius="5"
+					HorizontalAlignment="Center" Width="Auto"
+					Canvas.Top="20" Canvas.Left="50">
+
+                <Border.RenderTransform>
+                    <RotateTransform Angle="45"/>
+                </Border.RenderTransform>
+
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5" Opacity="0.5" />
+                </Border.Effect>
+
+                <TextBlock Text="fitnessPlan" FontSize="16"
+						   FontFamily="Bahnschrift" Foreground="Black"/>
+
+            </Border>
+
+            <Border Background="#f6643c" Padding="8" BorderThickness="0"
+                    BorderBrush="Transparent" CornerRadius="5"
+					HorizontalAlignment="Center" Width="Auto"
+					Canvas.Bottom="120" Canvas.Right="150">
+
+                <Border.RenderTransform>
+                    <RotateTransform Angle="-15"/>
+                </Border.RenderTransform>
+
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5" Opacity="0.5" />
+                </Border.Effect>
+
+                <TextBlock Text="Shopping" FontSize="16"
+			   FontFamily="Bahnschrift" Foreground="White"/>
+
+            </Border>
+
+            <Border Background="#f9bf30" Padding="8" BorderThickness="0"
+					BorderBrush="Transparent" CornerRadius="5"
+					HorizontalAlignment="Center" Width="Auto"
+					Canvas.Bottom="70" Canvas.Left="50">
+
+                <TextBlock Text="Meeting" FontSize="16"
+                           FontFamily="Bahnschrift" Foreground="White"/>
+
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5" Opacity="0.5" />
+                </Border.Effect>
+
+            </Border>
+
+            <Border Background="#99d65c" Padding="8" BorderThickness="0"
+					BorderBrush="Transparent" CornerRadius="5"
+					HorizontalAlignment="Center" Width="Auto"
+					Canvas.Bottom="100" Canvas.Right="50">
+
+                <Border.RenderTransform>
+                    <RotateTransform Angle="45"/>
+                </Border.RenderTransform>
+
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5" Opacity="0.5" />
+                </Border.Effect>
+
+                <TextBlock Text="Birthday" FontSize="16"
+                           FontFamily="Bahnschrift" Foreground="White"/>
+
+            </Border>
+
+            <Border Background="#399ee3" Padding="8" BorderThickness="0"
+					BorderBrush="Transparent" CornerRadius="5"
+					HorizontalAlignment="Center" Width="Auto"
+					Canvas.Bottom="5" Canvas.Left="50">
+
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5" Opacity="0.5" />
+                </Border.Effect>
+
+                <TextBlock Text="Holiday" FontSize="16"
+			   FontFamily="Bahnschrift" Foreground="White"/>
+
+
+
+            </Border>
+
+            <Border Background="#f6643c" Padding="8" BorderThickness="0"
+			        BorderBrush="Transparent" CornerRadius="5"
+			        HorizontalAlignment="Center" Width="Auto"
+					Canvas.Bottom="5" Canvas.Right="50">
+
+                <TextBlock Text="To do List" FontSize="16"
+			   FontFamily="Bahnschrift" Foreground="White"/>
+
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5" Opacity="0.5" />
+                </Border.Effect>
+
+            </Border>
+
+
+        </Canvas>
+
+        <StackPanel Grid.Row="2"
+						Orientation="Horizontal"
+						VerticalAlignment="Top"
+                    Background="White" Margin="25,100,0,0">
+
+            <Button Style="{DynamicResource CustomButton}" Content="SignIn"
+						FontFamily="Bahnschrift" Cursor="Hand"
+						Margin="25,0,0,0" FontSize="15" Background="#0e469c" Foreground="White"
+                        Command="{Binding GoToLoginPageCommand}"/>
+
+            <Button Style="{DynamicResource CustomButton}" Content="SignUp"
+						Margin="10,0,0,0" FontSize="15"
+						FontFamily="Bahnschrift" Cursor="Hand" Background="#99d65c" Foreground="White"
+                        Command="{Binding GoToRegisterPageCommand}"/>
+
+        </StackPanel>
+
+    </Grid>
+    
+</Page>

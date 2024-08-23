@@ -1,0 +1,67 @@
+﻿<Page x:Class="TaskFlow.Views.CreateList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TaskFlow.Views"
+      xmlns:viewModels="clr-namespace:TaskFlow.ViewModels"
+      xmlns:dataValidators="clr-namespace:TaskFlow.DataValidators"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+
+    <Page.DataContext>
+        <viewModels:CreateListViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel Orientation="Vertical">
+                <AdornedElementPlaceholder/>
+                <TextBlock Foreground="Red" FontSize="12"
+                       Margin="0,3,0,0" FontFamily="Bahnschrift"
+                       Text="{Binding [0].ErrorContent}"
+                       TextWrapping="Wrap" Width="400"/>
+            </StackPanel>
+        </ControlTemplate>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height=".9*"/>
+        </Grid.RowDefinitions>
+
+        <Button Style="{DynamicResource CustomButton}"
+                Content="Back" Command="{Binding GoBackCommand}"
+                HorizontalAlignment="Right" VerticalAlignment="Center"
+                Margin="10,0,10,0" FontFamily="Bahnschrift"
+                Cursor="Hand"/>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1"
+                    Width="400" Margin="0,60,0,0">
+
+            <TextBlock Text="List name"
+                       FontFamily="Bahnschrift"
+                       Margin="0,0,0,5"/>
+
+            <TextBox Style="{StaticResource CustomTextBox}" FontFamily="Bahnschrift"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                <TextBox.Text>
+                    <Binding Path="ListName" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <dataValidators:TextFieldValidator/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <Button Style="{DynamicResource CustomButton}"
+                    Content="Create list" Background="#399ee3" Foreground="White"
+                    Margin="0,25,0,0" FontFamily="Bahnschrift"
+                    Cursor="Hand"
+                    Command="{Binding CreateListCommand}"/>
+
+        </StackPanel>
+        
+    </Grid>
+</Page>

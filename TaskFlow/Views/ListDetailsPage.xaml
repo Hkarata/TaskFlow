@@ -1,0 +1,31 @@
+﻿<Page x:Class="TaskFlow.Views.ListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:viewModels="clr-namespace:TaskFlow.ViewModels"
+      xmlns:local="clr-namespace:TaskFlow.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ListPage">
+
+    <Page.DataContext>
+        <viewModels:ListDetailsViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height=".05*"/>
+            <RowDefinition Height=".85*"/>
+        </Grid.RowDefinitions>
+
+        <Button Style="{StaticResource CustomButton}" Content="Back"
+                FontFamily="Bahnschrift"
+                HorizontalAlignment="Right" VerticalAlignment="Center"
+                Margin="0,0,10,0" Cursor="Hand"
+                Command="{Binding GoBackCommand}"/>
+
+    </Grid>
+</Page>

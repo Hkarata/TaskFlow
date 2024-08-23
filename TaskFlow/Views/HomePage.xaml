@@ -1,0 +1,63 @@
+﻿<Page x:Class="TaskFlow.Views.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TaskFlow.Views"
+      xmlns:viewModels="clr-namespace:TaskFlow.ViewModels"
+      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HomePage">
+
+    <Page.DataContext>
+        <viewModels:HomeViewModel/>
+    </Page.DataContext>
+
+    <Grid Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height=".05*"/>
+            <RowDefinition Height=".85*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding Title}"
+                   VerticalAlignment="Center" HorizontalAlignment="Right"
+                   Margin="0,0,10,0" FontFamily="Bahnschrift"/>
+
+        <Button Style="{DynamicResource CustomButton}"
+                Content="Create to do list"
+                HorizontalAlignment="Left" VerticalAlignment="Center"
+                Margin="10,0,10,0" FontFamily="Bahnschrift"
+                Cursor="Hand" Command="{Binding GoToCreateListCommand}"/>
+
+
+        <TextBlock Text="Your to do lists"
+                   Grid.Row="1" Margin="10,0,0,0"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                   FontFamily="Bahnschrift"/>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Hidden"
+                      Background="Transparent" Margin="10,0,10,10">
+
+            <ItemsControl ItemsSource="{Binding todoLists}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Style="{StaticResource CustomButton}" Margin="0,0,0,5"
+                                HorizontalContentAlignment="Left" Cursor="Hand"
+                                CommandParameter="{Binding .}"
+                                Command="{Binding DataContext.GoToListDetailsCommand, RelativeSource={RelativeSource AncestorType=Page}}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Title}" FontFamily="Bahnschrift"/>
+                                
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            
+        </ScrollViewer>
+
+    </Grid>
+</Page>
