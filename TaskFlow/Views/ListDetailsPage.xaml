@@ -47,7 +47,9 @@
                     <DataTemplate>
                         <Button Style="{StaticResource CustomButton}"
                                 HorizontalContentAlignment="Left"
-                                Cursor="Hand" Margin="0,0,0,5">
+                                Cursor="Hand" Margin="0,0,0,5"
+                                CommandParameter="{Binding .}"
+                                Command="{Binding DataContext.GoToEditItemPageCommand, RelativeSource={RelativeSource AncestorType=Page}}">
                             <Grid Width="530">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width=".33*"/>

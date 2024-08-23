@@ -58,6 +58,7 @@ namespace TaskFlow
             NavigationService.Configure("CreateListPage", new Uri("./Views/CreateListPage.xaml", UriKind.Relative));
             NavigationService.Configure("ListDetailsPage", new Uri("./Views/ListDetailsPage.xaml", UriKind.Relative));
             NavigationService.Configure("AddTodoPage", new Uri("./Views/AddTodoPage.xaml", UriKind.Relative));
+            NavigationService.Configure("EditItemPage", new Uri("./Views/EditItemPage.xaml", UriKind.Relative));
 
         }
 

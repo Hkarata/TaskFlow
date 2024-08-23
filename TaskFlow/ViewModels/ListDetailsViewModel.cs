@@ -35,6 +35,12 @@ namespace TaskFlow.ViewModels
             NavigationService.NavigateTo("AddTodoPage", listId);
         }
 
+        [RelayCommand]
+        private void GoToEditItemPage(TodoItem item)
+        {
+            NavigationService.NavigateTo("EditItemPage", item);
+        }
+
         private void MainFrame_Navigated(object sender, NavigationEventArgs e)
         {
             if (e.ExtraData is TodoList todoList)
