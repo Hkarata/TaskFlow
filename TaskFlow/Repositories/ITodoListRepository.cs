@@ -7,7 +7,7 @@ namespace TaskFlow.Repositories
         Task CreateOrUpdateToDoList(string title, Guid userId);
         Task DeleteToDoList(Guid listId);
         Task<TodoList?> GetToDoList(Guid listId);
-        Task<TodoList?> GetToDoListWithItems(Guid userId);
+        Task<TodoList?> GetToDoListWithItems(Guid listId);
         Task<List<TodoList>?> GetToDoLists(Guid userId);
     }
 }

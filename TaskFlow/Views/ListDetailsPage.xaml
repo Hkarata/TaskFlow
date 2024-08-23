@@ -28,7 +28,7 @@
                 Margin="0,0,10,0" Cursor="Hand"
                 Command="{Binding GoBackCommand}"/>
 
-        <TextBlock Text="{Binding TodoList.Title, RelativeSource={RelativeSource AncestorType=Page}, StringFormat='{}{0} to do list.'}"
+        <TextBlock Text="{Binding TodoList.Title, StringFormat='{}{0} to do list.'}"
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Left"
                    Margin="10,0,0,0" 
@@ -39,12 +39,43 @@
                    HorizontalAlignment="Left" VerticalAlignment="Center"
                    FontFamily="Bahnschrift"/>
 
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Hidden"
+                      Margin="10,0,10,0">
+
+            <ItemsControl ItemsSource="{Binding TodoList.Items}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Style="{StaticResource CustomButton}"
+                                HorizontalContentAlignment="Left"
+                                Cursor="Hand" Margin="0,0,0,5">
+                            <Grid Width="530">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".33*"/>
+                                    <ColumnDefinition Width=".33*"/>
+                                    <ColumnDefinition Width=".33*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Description}"
+                                           FontFamily="Bahnschrift"
+                                           />
+                                <TextBlock Text="{Binding Priority, StringFormat='Item priority: {0}'}"
+                                           FontFamily="Bahnschrift"
+                                           Grid.Column="1"/>
+                                <TextBlock Text="{Binding Flag, StringFormat='Item flag: {0}'}"
+                                           FontFamily="Bahnschrift" Grid.Column="2"/>
+                            </Grid>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            
+        </ScrollViewer>
+
 
         <Button Style="{StaticResource CustomButton}" Content="Add to do item"
                 Margin="10" FontFamily="Bahnschrift"
                 Cursor="Hand" Grid.Row="3"
                 Background="#f4b400"
-                CommandParameter="{Binding TodoList.Id, RelativeSource={RelativeSource AncestorType=Page}}"
+                CommandParameter="{Binding TodoList.Id}"
                 Command="{Binding GoToAddItemPageCommand}"
                 />
 

@@ -65,7 +65,8 @@
             <TextBlock Text="Todo item priority" FontFamily="Bahnschrift"
                        Margin="0,20,0,5"/>
             
-            <ComboBox Style="{DynamicResource CustomComboBox}" FontFamily="Bahnschrift">
+            <ComboBox Style="{DynamicResource CustomComboBox}" FontFamily="Bahnschrift"
+                      SelectedItem="{Binding Priority}">
                 <ComboBoxItem Content="Low"/>
                 <ComboBoxItem Content="High"/>
                 <ComboBoxItem Content="Medium"/>

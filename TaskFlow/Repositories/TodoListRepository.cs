@@ -48,12 +48,12 @@ namespace TaskFlow.Repositories
             return todoLists;
         }
 
-        public async Task<TodoList?> GetToDoListWithItems(Guid userId)
+        public async Task<TodoList?> GetToDoListWithItems(Guid listId)
         {
             var lists = await context.TodoLists
                 .AsNoTracking()
                 .Include(tl => tl.Items)
-                .Where(tl => tl.UserId == userId)
+                .Where(tl => tl.Id == listId)
                 .FirstOrDefaultAsync();
 
             return lists ?? null;

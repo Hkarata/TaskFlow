@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
+using System.Windows.Controls;
 using TaskFlow.Models;
 using TaskFlow.Repositories;
 
@@ -19,7 +20,7 @@ namespace TaskFlow.ViewModels
         private string _description = string.Empty;
 
         [ObservableProperty]
-        private string _priority = "Low";
+        private ComboBoxItem _priority;
 
         [RelayCommand]
         private void GoBack()
@@ -34,7 +35,7 @@ namespace TaskFlow.ViewModels
             {
                 Id = Guid.NewGuid(),
                 Description = Description,
-                Priority = (ItemPriority)Enum.Parse(typeof(ItemPriority), Priority),
+                Priority = (ItemPriority)Enum.Parse(typeof(ItemPriority), Priority.Content.ToString()),
                 Flag = ItemFlag.NotStarted,
                 TodoListId = Guid.Parse(listId)
             };
