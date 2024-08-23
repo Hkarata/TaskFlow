@@ -24,6 +24,7 @@
         Completed,
         Deleted,
         InProgress,
-        Discarded
+        Discarded,
+        NotStarted
     }
 }

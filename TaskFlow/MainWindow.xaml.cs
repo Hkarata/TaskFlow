@@ -36,7 +36,7 @@ namespace TaskFlow
                 NavigationService.NavigateTo("WelcomePage");
             }
 
-        
+
         }
 
         public MainWindow(INavigationService navigationService)
@@ -57,6 +57,7 @@ namespace TaskFlow
             NavigationService.Configure("HomePage", new Uri("./Views/HomePage.xaml", UriKind.Relative));
             NavigationService.Configure("CreateListPage", new Uri("./Views/CreateListPage.xaml", UriKind.Relative));
             NavigationService.Configure("ListDetailsPage", new Uri("./Views/ListDetailsPage.xaml", UriKind.Relative));
+            NavigationService.Configure("AddTodoPage", new Uri("./Views/AddTodoPage.xaml", UriKind.Relative));
 
         }
 

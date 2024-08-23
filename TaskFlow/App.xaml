@@ -11,7 +11,7 @@
                 <ResourceDictionary Source="./Resources/Styles/ListViewStyles.xaml"/>
                 <ResourceDictionary Source="./Resources/Styles/TextBoxStyles.xaml"/>
                 <ResourceDictionary Source="./Resources/Styles/ProgressBarStyle.xaml"/>
-                <ResourceDictionary Source="./Resources/Styles/ItemsPresenterStyle.xaml"/>
+                <ResourceDictionary Source="./Resources/Styles/ComboBoxStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
          </ResourceDictionary>
     </Application.Resources>

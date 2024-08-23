@@ -1,0 +1,85 @@
+﻿<Page x:Class="TaskFlow.Views.AddTodoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TaskFlow.Views"
+      xmlns:viewModels="clr-namespace:TaskFlow.ViewModels"
+      xmlns:dataValidators="clr-namespace:TaskFlow.DataValidators"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddTodoPage">
+
+    <Page.DataContext>
+        <viewModels:AddTodoViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel Orientation="Vertical">
+                <AdornedElementPlaceholder/>
+                <TextBlock Foreground="Red" FontSize="12"
+                       Margin="0,3,0,0" FontFamily="Bahnschrift"
+                       Text="{Binding [0].ErrorContent}"
+                       TextWrapping="Wrap" Width="400"/>
+            </StackPanel>
+        </ControlTemplate>
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height=".9*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding Title}"
+           VerticalAlignment="Center" HorizontalAlignment="Left"
+           Margin="10,0,0,0" FontFamily="Bahnschrift"/>
+
+        <Button Style="{StaticResource CustomButton}"
+                Content="Back"
+                HorizontalAlignment="Right" VerticalAlignment="Center"
+                Margin="10,0,10,0" FontFamily="Bahnschrift"
+                Cursor="Hand" Command="{Binding GoBackCommand}"/>
+
+
+        <StackPanel Orientation="Vertical" Grid.Row="1"
+                    Width="400">
+
+            <TextBlock Text="Todo item description" FontFamily="Bahnschrift"
+                       Margin="0,0,0,5"/>
+
+            <TextBox Style="{StaticResource CustomTextBox}"
+                     Height="70" TextWrapping="Wrap"
+                     FontFamily="Bahnschrift">
+                <TextBox.Text>
+                    <Binding Path="Description" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <dataValidators:TextFieldValidator/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBlock Text="Todo item priority" FontFamily="Bahnschrift"
+                       Margin="0,20,0,5"/>
+            
+            <ComboBox Style="{DynamicResource CustomComboBox}" FontFamily="Bahnschrift">
+                <ComboBoxItem Content="Low"/>
+                <ComboBoxItem Content="High"/>
+                <ComboBoxItem Content="Medium"/>
+            </ComboBox>
+
+            <Button Style="{StaticResource CustomButton}" Content="Add to do item"
+                    FontFamily="Bahnschrift" Margin="0,30,0,0"
+                    Cursor="Hand"
+                    CommandParameter="{Binding ListId, RelativeSource={RelativeSource AncestorType=Page}}"
+                    Command="{Binding AddToDoCommand}"/>
+
+
+        </StackPanel>
+        
+
+    </Grid>
+</Page>

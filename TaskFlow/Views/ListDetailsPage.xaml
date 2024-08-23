@@ -18,7 +18,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height=".1*"/>
             <RowDefinition Height=".05*"/>
-            <RowDefinition Height=".85*"/>
+            <RowDefinition Height=".75*"/>
+            <RowDefinition Height=".1*"/>
         </Grid.RowDefinitions>
 
         <Button Style="{StaticResource CustomButton}" Content="Back"
@@ -33,6 +34,19 @@
                    Margin="10,0,0,0" 
                    FontFamily="Bahnschrift"/>
 
+        <TextBlock Text="Your to do items"
+                   Grid.Row="1" Margin="10,0,0,0"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                   FontFamily="Bahnschrift"/>
+
+
+        <Button Style="{StaticResource CustomButton}" Content="Add to do item"
+                Margin="10" FontFamily="Bahnschrift"
+                Cursor="Hand" Grid.Row="3"
+                Background="#f4b400"
+                CommandParameter="{Binding TodoList.Id, RelativeSource={RelativeSource AncestorType=Page}}"
+                Command="{Binding GoToAddItemPageCommand}"
+                />
 
     </Grid>
 </Page>
