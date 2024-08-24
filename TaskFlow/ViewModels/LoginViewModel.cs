@@ -75,6 +75,7 @@ namespace TaskFlow.ViewModels
 
             var mainWindow = Application.Current.MainWindow as MainWindow;
             mainWindow!.CurrentUser = CurrentUser;
+            mainWindow.IsLoggedIn = true;
         }
     }
 }

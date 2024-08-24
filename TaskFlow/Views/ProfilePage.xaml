@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:viewModels="clr-namespace:TaskFlow.ViewModels"
+      xmlns:dataValidators="clr-namespace:TaskFlow.DataValidators"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="600"
       Title="UserPage">
@@ -12,6 +13,18 @@
         <viewModels:ProfileViewModel/>
     </Page.DataContext>
 
+    <Page.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel Orientation="Vertical">
+                <AdornedElementPlaceholder/>
+                <TextBlock Foreground="Red" FontSize="12"
+                   Margin="0,3,0,0" FontFamily="Bahnschrift"
+                   Text="{Binding [0].ErrorContent}"
+                   TextWrapping="Wrap" Width="400"/>
+            </StackPanel>
+        </ControlTemplate>
+    </Page.Resources>
+
     <Grid>
         
         <Grid.RowDefinitions>
@@ -19,7 +32,67 @@
             <RowDefinition Height=".9*"/>
         </Grid.RowDefinitions>
         
-        <TextBlock Text="{Binding Title}"/>
+        <TextBlock Text="{Binding Title}"
+                   VerticalAlignment="Center" Margin="10,0,0,0"
+                   FontFamily="Bahnschrift"/>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1"
+                    Width="400">
+            <TextBlock Text="Name" Margin="10,20,0,5" FontFamily="Bahnschrift"/>
+
+            <TextBox Margin="10,0,0,10" FontFamily="Bahnschrift"
+                     Style="{StaticResource CustomTextBox}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                <TextBox.Text>
+                    <Binding Path="User.Name" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <dataValidators:TextFieldValidator/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                
+            </TextBox>
+            
+            <TextBlock Text="Email" Margin="10,20,0,5" FontFamily="Bahnschrift"/>
+
+            <TextBox Margin="10,0,0,10" FontFamily="Bahnschrift"
+                     Style="{StaticResource CustomTextBox}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+
+                <TextBox.Text>
+                    <Binding Path="User.Email" UpdateSourceTrigger="PropertyChanged"> 
+                        <Binding.ValidationRules>
+                            <dataValidators:EmailValidator/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                
+            </TextBox>
+            
+            <TextBlock Text="Password" Margin="10,20,0,5" FontFamily="Bahnschrift"/>
+
+            <TextBox Margin="10,0,0,10" FontFamily="Bahnschrift"
+                     Style="{StaticResource CustomTextBox}"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                <TextBox.Text>
+                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <dataValidators:PasswordValidator/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            
+            <Button Content="Update account" Margin="10,40,0,0" FontFamily="Bahnschrift"
+                    Style="{StaticResource CustomButton}"
+                    Cursor="Hand"
+                    Command="{Binding UpdateAccountCommand}"/>
+
+            <Button Content="Delete account" Margin="10,40,0,0" FontFamily="Bahnschrift"
+                    Style="{StaticResource CustomButton}"
+                    Cursor="Hand" Background="red"
+                    Command="{Binding DeleteAccountCommand}" Foreground="White"/>
+        </StackPanel>
         
     </Grid>
 </Page>
