@@ -68,7 +68,13 @@
                     Margin="0,20,0,0"
                     Height="30" Cursor="Hand"
                     Command="{Binding SaveCommand}"/>
-            
+
+            <Button Style="{StaticResource CustomButton}"
+                    Content="Delete" FontFamily="Bahnschrift"
+                    Margin="0,20,0,0" Background="Red"
+                    Height="30" Cursor="Hand"
+                    Command="{Binding DeleteCommand}"/>
+
         </StackPanel>
         
     </Grid>

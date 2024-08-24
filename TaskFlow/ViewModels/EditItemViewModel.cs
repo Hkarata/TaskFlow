@@ -44,7 +44,7 @@ namespace TaskFlow.ViewModels
         [RelayCommand]
         private void GoBack()
         {
-            NavigationService.GoBack();
+            NavigationService.NavigateTo("ListDetailsPage", TodoItem!.TodoList);
         }
 
         [RelayCommand]
@@ -62,6 +62,13 @@ namespace TaskFlow.ViewModels
             await _todoRepository!.CreateOrUpdateToDo(todoItem);
 
             NavigationService.NavigateTo("ListDetailsPage", todoItem.TodoList);
+        }
+
+        [RelayCommand]
+        private async Task Delete()
+        {
+            await _todoRepository!.DeleteTodo(TodoItem!.Id);
+            NavigationService.NavigateTo("HomePage");
         }
     }
 }
