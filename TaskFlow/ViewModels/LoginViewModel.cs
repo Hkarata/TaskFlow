@@ -39,25 +39,32 @@ namespace TaskFlow.ViewModels
         [RelayCommand]
         private async Task Login()
         {
-            var user = await _userRepository!.GetAccount(Email);
-
-            if (user == null)
+            try
             {
-                IsAccountInValid = true;
-                ValidationMessage = "User with the provided email does not exist.";
+                var user = await _userRepository!.GetAccount(Email);
+                if (user == null)
+                {
+                    IsAccountInValid = true;
+                    ValidationMessage = "User with the provided email does not exist.";
+                    return;
+                }
+
+                if (PasswordService.VerifyHashedPassword(user.Password, Password))
+                {
+                    IsAccountInValid = false;
+                    StartUserSession(user.Id, user.Name, user.Email);
+                    NavigationService.NavigateTo("HomePage");
+                }
+                else
+                {
+                    IsAccountInValid = true;
+                    ValidationMessage = "Valid email but invalid password.";
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please configure database connection", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }
-
-            if (PasswordService.VerifyHashedPassword(user.Password, Password))
-            {
-                IsAccountInValid = false;
-                StartUserSession(user.Id, user.Name, user.Email);
-                NavigationService.NavigateTo("HomePage");
-            }
-            else
-            {
-                IsAccountInValid = true;
-                ValidationMessage = "Valid email but invalid password.";
             }
         }
 

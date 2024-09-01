@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
 using TaskFlow.Models;
 using TaskFlow.Repositories;
 using TaskFlow.Services;
@@ -43,7 +44,15 @@ namespace TaskFlow.ViewModels
                 Password = PasswordService.HashPassword(Password)
             };
 
-            await _userRepository!.CreateOrUpdateAccount(user);
+            try
+            {
+                await _userRepository!.CreateOrUpdateAccount(user);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please configure database connection", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             NavigationService.NavigateTo("LoginPage");
         }
